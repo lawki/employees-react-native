@@ -1,3 +1,9 @@
+# About
+This project aims to fetch data from an API and allow adding, deleting, updating employee information from the app. All the while maintaining cross platform compatibility
+It uses react-native and react-navigation as dependencies.
+
+# Origins
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
