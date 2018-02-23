@@ -6,6 +6,26 @@ import {
     } from 'react-native';
 import Employee from './Employee';
 
+class DetailRow extends React.Component{
+    constructor(props)
+    {
+        super(props);
+    }
+    render(){
+        return (
+            <View style={styles.rowContainer}>
+                <View style={{width:"40%"}}>
+                    <Text style={{textAlign:"left"}}>{this.props.propertyName} </Text>
+                 </View> 
+                 <Text>:</Text>
+                 <View style={{width:"40%"}}>
+                   <Text style={{textAlign:'right'}}> {this.props.propertyValue}</Text>
+                 </View>  
+            </View>
+        );
+    }
+}
+
 export default class EmployeeDetail extends React.Component{
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
@@ -24,10 +44,10 @@ export default class EmployeeDetail extends React.Component{
 
     render(){
         return (
-                <View>
-                    <Text>    
-                    employee is {JSON.stringify(this.state.employee)}
-                    </Text>
+                <View style={{flex:1,flexDirection:"column"}}>
+                    <DetailRow propertyName="Employee ID" propertyValue={this.state.employee?this.state.employee.id:0}/>
+                    <DetailRow propertyName="Name" propertyValue={this.state.employee?this.state.employee.name:0}/>
+                    <DetailRow propertyName="Motto" propertyValue={this.state.employee?this.state.employee.motto:0}/>
                 </View>
         );
     }
@@ -38,3 +58,9 @@ export default class EmployeeDetail extends React.Component{
         .catch((error)=> alert(error));
     }
 }
+
+const styles = StyleSheet.create({
+    rowContainer:{
+        flexDirection:"row",justifyContent:"space-around",marginTop:20,marginLeft:20,marginRight:20
+    }
+});
