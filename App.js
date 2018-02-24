@@ -37,7 +37,7 @@ class Home extends React.Component{
       return this.state.employees.map((employee)=>
       {
          return (
-                  <View>
+                  <View style={{}}>
                         <Employee employee={employee} 
                                 onDelete={()=>this.deleteEmployee(employee.id)} 
                                 onEmployeeInfo={()=> {

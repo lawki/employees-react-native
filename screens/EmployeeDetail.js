@@ -61,6 +61,10 @@ export default class EmployeeDetail extends React.Component{
 
 const styles = StyleSheet.create({
     rowContainer:{
-        flexDirection:"row",justifyContent:"space-around",marginTop:20,marginLeft:20,marginRight:20
+        flexDirection:"row",
+        justifyContent:"space-around",
+        marginTop:20,
+        marginLeft:20,
+        marginRight:20,
     }
 });

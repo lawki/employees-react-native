@@ -8,17 +8,18 @@ export default class Employee extends React.Component{
     render(){
        return (
        <View style={styles.employeeContainer}>
-           <View style={{marginLeft:20,marginRight:40}}>
+           <View style={{width:"10%"}}>
                <Text >{this.props.employee.id}</Text>
            </View>
- 
+            <View style={{width:"40%"}}>
            <Text>{this.props.employee.name}</Text>
+           </View>
  
-           <TouchableOpacity style={styles.touchableOpacity} onPress={()=> this.props.onDelete()}>
-               <Text> X </Text>
+           <TouchableOpacity style={{width:"20%"}} onPress={()=> this.props.onDelete()}>
+               <Text> Delete </Text>
            </TouchableOpacity>
  
-           <TouchableOpacity style={styles.touchableOpacity} onPress={()=> this.props.onEmployeeInfo()}>
+           <TouchableOpacity style={{width:"20%"}} onPress={()=> this.props.onEmployeeInfo()}>
               <Text> More </Text>
           </TouchableOpacity>
        </View>
@@ -29,7 +30,10 @@ export default class Employee extends React.Component{
     employeeContainer:{
         marginTop:10,
         marginBottom:10,
+        marginLeft:10,
+        marginRight:10,
         flexDirection:'row',
+        justifyContent:'space-around',
     },
   
   });
