@@ -4,14 +4,42 @@ import {
  StyleSheet, Text, ScrollView, View,Alert,
  TouchableOpacity,
  Button,
+ Image,
  } from 'react-native';
+import HeaderButtons from 'react-navigation-header-buttons'
+//import Icon from 'react-native-vector-icons/Ionicons';
+ 
  import EmployeeDetail from './screens/EmployeeDetail';
+ import AddEmployee from './screens/AddEmployee';
+// import addButton from './icons/add_icon.jpg';
  import Employee from './screens/Employee';
 class Home extends React.Component{
-  static navigationOptions = {
-    title:'Home'
+  static navigationOptions =({navigation})=> {
+    params = navigation.state.params||{};
+    return (
+      {
+        title:"Home",
+        headerRight: (
+        <TouchableOpacity onPress={params.goToAddEmployee}
+        style={{width:"30%"}}>
+        <Text style={{flexDirection:"row"}}>+      </Text>
+      </TouchableOpacity>
+        )
+    }
+  );
   }
-  static SERVER_HOME = "http://localhost:3000";
+
+  componentWillMount() {
+    this.props.navigation.setParams({ goToAddEmployee: this._goToAddEmployee });
+  }
+
+  _goToAddEmployee(){
+    if(this.props && this.props.navigation && this.props.navigation.navigate)
+        this.props.navigation.navigate('AddEmployee');
+    else
+        alert("False props at add employee");
+  }
+
    constructor(props)
    {
       super(props);
@@ -59,6 +87,7 @@ class Home extends React.Component{
       return (
            <View>
             {this.renderEmployees()}
+            <Button title="Add" onPress={()=> this.props.navigation.navigate('AddEmployee')}/>
            </View>
            );
    }
@@ -69,7 +98,7 @@ class Home extends React.Component{
      .catch((err)=> alert(err));
    }
 }
-
+/*
 export class Homer extends React.Component {
   static navigationOptions = {
     title:'Home'
@@ -93,7 +122,7 @@ export class Homer extends React.Component {
     );
   }
 }
-
+*/
 export default StackNavigator({
   Home:{
     screen:Home,
@@ -102,7 +131,10 @@ export default StackNavigator({
     screen:EmployeeDetail
   },
   Employee:{
-    screen:Employee
+    screen:Employee,
+  },
+  AddEmployee:{
+    screen:AddEmployee,
   }
 },{
   initialRouteName:'Home',
