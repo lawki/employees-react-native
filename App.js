@@ -13,7 +13,17 @@ import HeaderButtons from 'react-navigation-header-buttons'
  import AddEmployee from './screens/AddEmployee';
 // import addButton from './icons/add_icon.jpg';
  import Employee from './screens/Employee';
+ import Blink from './screens/Blink';
+
 class Home extends React.Component{
+
+  constructor(props)
+   {
+      super(props);
+      this.state={
+          employees:null,
+      };
+   }
   static navigationOptions =({navigation})=> {
     params = navigation.state.params||{};
     return (
@@ -40,15 +50,6 @@ class Home extends React.Component{
         alert("False props at add employee");
   }
 
-   constructor(props)
-   {
-      super(props);
-      this.state={
-          employees:[{id: 'D', name: 'Devin'},
-            {id: 'J', name: 'Jackson'},
-            ],
-      };
-   }
   deleteEmployee(id){
        // alert('Deleting employee '+id);
        let employees = this.state.employees ;
@@ -61,7 +62,9 @@ class Home extends React.Component{
    }
    renderEmployees()
    {
-      
+     if(!this.state.employees){
+       return (<Blink text="Loading the employees..."/>);
+     }
       return this.state.employees.map((employee)=>
       {
          return (
@@ -85,10 +88,16 @@ class Home extends React.Component{
     }
    render(){
       return (
-           <View>
+           <ScrollView>
             {this.renderEmployees()}
-            <Button title="Add" onPress={()=> this.props.navigation.navigate('AddEmployee')}/>
-           </View>
+            <View style={styles.button}>
+              <Button 
+                   
+                  title="Add Employee" 
+                  onPress={()=> this.props.navigation.navigate('AddEmployee')}
+              />
+            </View>
+           </ScrollView>
            );
    }
    componentDidMount(){
@@ -98,31 +107,7 @@ class Home extends React.Component{
      .catch((err)=> alert(err));
    }
 }
-/*
-export class Homer extends React.Component {
-  static navigationOptions = {
-    title:'Home'
-  }
-  constructor(props){
-    super(props);
-  }
 
-  render() {
-    return (
-    <View style={styles.container}>
-        <ScrollView>
-            <Employees/>
-            <Button title="Details" 
-              onPress={()=> this.props.navigation.navigate('EmployeeDetail')}
-              navigation={this.props.navigation}
-              />
-        </ScrollView>
-        
-    </View>
-    );
-  }
-}
-*/
 export default StackNavigator({
   Home:{
     screen:Home,
@@ -162,7 +147,6 @@ const styles = StyleSheet.create({
     justifyContent:'center',
   },
   button:{
-    width:120,
     height:'auto',
     marginTop:10,
     marginLeft:10,

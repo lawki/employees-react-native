@@ -16,11 +16,11 @@ export default class Employee extends React.Component{
            </View>
  
            <TouchableOpacity style={{width:"20%"}} onPress={()=> this.props.onDelete()}>
-               <Text> Delete </Text>
+               <Text style={{color:"red"}}> Delete </Text>
            </TouchableOpacity>
  
            <TouchableOpacity style={{width:"20%"}} onPress={()=> this.props.onEmployeeInfo()}>
-              <Text> More </Text>
+              <Text style={{color:"blue"}}> More </Text>
           </TouchableOpacity>
        </View>
        );

@@ -4,7 +4,9 @@ import {
     StyleSheet, Text, ScrollView, View,Alert,
     TouchableOpacity,
     } from 'react-native';
+
 import Employee from './Employee';
+import Blink from './Blink';
 
 class DetailRow extends React.Component{
     constructor(props)
@@ -43,6 +45,10 @@ export default class EmployeeDetail extends React.Component{
     }
 
     render(){
+        if(!this.state.employee)
+        {
+            return (<Blink text="Loading the employee..."/>)
+        }
         return (
                 <View style={{flex:1,flexDirection:"column"}}>
                     <DetailRow propertyName="Employee ID" propertyValue={this.state.employee?this.state.employee.id:0}/>
